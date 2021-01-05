@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Husky-Game-Dev/HGD-Bot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
     "eslint": "^7.17.0"
   }
 }
