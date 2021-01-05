@@ -1,16 +1,21 @@
 const fs = require('fs');
 require('dotenv').config();
-const {
-	prefix,
-} = require('./config.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+const config = {
+	token: process.env.TOKEN,
+	prefix: process.env.PREFIX,
+	tenorkey: process.env.TENORKEY,
+};
+const prefix = config.prefix;
+
 client.once('ready', () => {
 	console.log('Ready!');
 });
-client.login(process.env.TOKEN);
+
+client.login(config.token);
 
 // load commands
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -38,5 +43,4 @@ client.on('message', message => {
 		console.log(error);
 		message.reply('there was an error trying to execute that command!');
 	}
-
 });
