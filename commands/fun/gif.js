@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
   name: 'gif',
-  category: 'fun',
+  category: 'Fun',
   description: 'Get a GIF from Tenor',
   async execute(message, args) {
     message.channel.send('GIF!');

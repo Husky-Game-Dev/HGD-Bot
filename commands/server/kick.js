@@ -1,7 +1,7 @@
 module.exports = {
   name: 'kick',
-  category: 'info',
-  description: 'Trump 2020 update',
+  category: 'Server',
+  description: 'Kick',
   execute(message) {
     message.channel.send('Under construction');
   },

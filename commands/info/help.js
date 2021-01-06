@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'help',
-  category: 'info',
+  category: 'Info',
   description: 'Description about the bot\'s commands',
   execute(message, args, client) {
     if(!args.length) {
@@ -22,9 +22,14 @@ module.exports = {
     // !husky command arg2 arg3...
     const command = args.shift().toLowerCase();
     if(client.commands.has(command)) {
+      const cmd = client.commands.get(command);
+      const about = `\`Command name:\` ${cmd.name} 
+                     \n\`Category:\` ${cmd.category}
+                     \n\`Description:\` ${cmd.description}`;
       const commandEmbed = new MessageEmbed()
-      .setColor('#0099ff');
-      return message.channel.send(commandEmbed);
+      .setColor('#0099ff')
+      .setThumbnail(client.user.avatarURL());
+      return message.channel.send(commandEmbed.setDescription(about));
     }
     else{
       const invalidEmbed = new MessageEmbed()

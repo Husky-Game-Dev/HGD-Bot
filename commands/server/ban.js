@@ -1,7 +1,7 @@
 module.exports = {
   name: 'ban',
-  category: 'server',
-  description: 'Trump 2020 update',
+  category: 'Server',
+  description: 'Give someone the ban hammer',
   execute(message) {
     message.channel.send('Under construction');
   },
