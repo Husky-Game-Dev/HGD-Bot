@@ -11,22 +11,24 @@ module.exports = {
       .setTitle('Commands list')
       .setAuthor('Husky Game Dev', 'https://i.imgur.com/xMskFdp.png', 'https://huskygamedev.com')
       .setColor('RANDOM')
-      .setDescription('Use `!husky help [command]` to get more help!')
+      .setDescription('Use `!husky help [command]` for specific command help')
       .addFields(
-        { name: 'Info', value: '`help` `TBD` `TBD` `TBD` `TBD`', inline: true },
-        { name: 'Server', value: '`kick` `ban` `TBD` `TBD` `TBD`', inline: true },
-        { name: 'Fun', value: '`gif` `presidential` `trumptweet` `rps`', inline: true },
+        { name: ':information_source: Info', value: '`help` `TBD` `TBD` `TBD` `TBD`', inline: true },
+        { name: ':partying_face: Server', value: '`kick` `ban` `TBD` `TBD` `TBD`', inline: true },
+        { name: ':laughing: Fun', value: '`gif` `presidential` `trumptweet` `rps`', inline: true },
       );
       return message.channel.send(helpEmbed);
     }
     // !husky command arg2 arg3...
     const command = args.shift().toLowerCase();
     if(client.commands.has(command)) {
-      message.channel.send(command);
+      const commandEmbed = new MessageEmbed()
+      .setColor('#0099ff');
+      return message.channel.send(commandEmbed);
     }
     else{
       const invalidEmbed = new MessageEmbed()
-      .setColor('#0099ff')
+      .setColor('#F93A2F')
       .setTitle('Help error!')
       .setURL('https://huskygamedev.com')
       .setAuthor('Husky Game Dev', 'https://i.imgur.com/xMskFdp.png', 'https://huskygamedev.com')

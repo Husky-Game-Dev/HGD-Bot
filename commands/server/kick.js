@@ -3,6 +3,6 @@ module.exports = {
   category: 'info',
   description: 'Trump 2020 update',
   execute(message) {
-    message.channel.send('Kanye will be my best running mate');
+    message.channel.send('Under construction');
   },
 };
