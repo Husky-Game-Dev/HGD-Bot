@@ -23,9 +23,10 @@ module.exports = {
     const command = args.shift().toLowerCase();
     if(client.commands.has(command)) {
       const cmd = client.commands.get(command);
-      const about = `\`Command name:\` ${cmd.name} 
+      let about = `\`Command name:\` ${cmd.name} 
                      \n\`Category:\` ${cmd.category}
                      \n\`Description:\` ${cmd.description}`;
+      if(cmd.usage) about += `\n\`Usage:\` ${cmd.usage}`;
       const commandEmbed = new MessageEmbed()
       .setColor('#0099ff')
       .setThumbnail(client.user.avatarURL());
