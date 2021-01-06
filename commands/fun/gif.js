@@ -2,17 +2,17 @@ const fetch = require('node-fetch');
 
 module.exports = {
   name: 'gif',
+  category: 'fun',
   description: 'Get a GIF from Tenor',
-  async execute(message) {
+  async execute(message, args) {
     message.channel.send('GIF!');
-    const tokens = message.content.split(' ');
     // !husky gif dog cat mouse
-    // [!husky, gif, dog, cat, mouse]
+    // [dog, cat, mouse]
     let keywords = 'husky';
-    if (tokens.length > 2) {
-      keywords = tokens.slice(2, tokens.length).join(' ');
+    if (args.length > 0) {
+      keywords = args.slice(0, args.length).join(' ');
     }
-
+    // content filer:
     // high - G
     // medium - G and PG
     // low - G, PG, and PG - 13

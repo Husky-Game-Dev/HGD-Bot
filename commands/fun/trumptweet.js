@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
   name: 'trumptweet',
+  category: 'fun',
   description: 'dumb tweet by trump',
   async execute(message) {
     const tweet = await fetch('https://api.tronalddump.io/random/quote')
@@ -10,5 +11,4 @@ module.exports = {
       .then(response => response.value);
     message.channel.send(tweet);
   },
-
 };

@@ -18,45 +18,58 @@ client.once('ready', () => {
 client.login(config.token);
 
 // load commands
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-	console.log(command.name + ' added');
-}
+fs.readdirSync('./commands/').forEach(dir => {
+	const commandFiles = fs.readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
+	for(const file of commandFiles) {
+		const command = require(`./commands/${dir}/${file}`);
+		if(!command.name) continue;
+		client.commands.set(command.name, command);
+		console.log(command.name + ' added');
+	}
+});
 
 client.on('message', message => {
 	console.log(message.content);
-
 	if (message.author.bot) return;
 	if (message.content.indexOf(prefix) !== 0) return;
 
-	// xxx command arg2 arg3...
+	// !husky command arg2 arg3...
 	const args = message.content.slice(prefix.length + 1).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();
-	console.log(command);
 
 	if (!command.length) {
-		const embed = new Discord.MessageEmbed()
-			.setColor('#0099ff')
-			.setTitle('Error')
-			.setURL('https://huskygamedev.com')
-			.setAuthor('Husky Game Dev', 'https://huskygamedev.com/assets/img/HGD_logo_final.png,', 'https://huskygamedev.com')
-			.setDescription('Not enough arguments.')
-			.setFooter('Bot error log')
-			.addField('Code', '123x9', true)
-			.setTimestamp()
-			.setImage('https://huskygamedev.com/assets/img/HGD_logo_final.png');
-		console.log(!args.length);
-		return message.channel.send(embed);
+		return message.channel.send({ embed: invalidEmbed });
 	}
 
 	if (!client.commands.has(command)) return;
 
 	try {
-		client.commands.get(command).execute(message, args);
+		client.commands.get(command).execute(message, args, client);
 	} catch (error) {
 		console.log(error);
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+const invalidEmbed = {
+	color: 0x0099ff,
+	title: 'Error',
+	url: 'https://huskygamedev.com',
+	author: {
+		name: 'Husky Game Dev',
+		icon_url: 'https://i.imgur.com/xMskFdp.png',
+		url: 'https://huskygamedev.com',
+	},
+	description: 'Not enough arguments',
+	fields: {
+		name: 'Code',
+		value: '123x9'
+	},
+	image: {
+		url: 'https://i.imgur.com/xMskFdp.png',
+	},
+	timestamp: new Date(),
+	footer: {
+		text: 'Bot error log'
+	},
+};
