@@ -27,11 +27,22 @@ fs.readdirSync('./commands/').forEach(dir => {
 	}
 });
 
+client.on('ready', () => {
+	console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setPresence({
+				status: 'online',
+        activity: {
+            name: '!husky help',
+            type: 'WATCHING',
+        }
+		})
+		.catch(console.error);
+});
+
 client.on('message', message => {
 	console.log(message.content);
 	if (message.author.bot) return;
 	if (message.content.indexOf(prefix) !== 0) return;
-
 	// !husky command arg2 arg3...
 	const args = message.content.slice(prefix.length + 1).trim().split(/ +/g);
 	const command = args.shift().toLowerCase();

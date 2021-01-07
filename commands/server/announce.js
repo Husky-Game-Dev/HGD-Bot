@@ -39,7 +39,6 @@ module.exports = {
         });
       })
       .catch(console.error);
-
       // Wait for respond from user
       const collector = message.channel.createMessageCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', m => {
@@ -69,7 +68,7 @@ module.exports = {
     }
     else if(args.length >= 1 && channel) {
       channel.send(args.join(' '));
-      return message.reply(`Announce in ${channel.id} with msg: ${args}`);
+      return message.reply(`Announce in \`#${channel.name}\` with msg: \`${args}\``);
     }
     else{
       return message.reply('Can\'t find channel ID');
