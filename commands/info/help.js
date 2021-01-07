@@ -14,12 +14,12 @@ module.exports = {
       .setDescription('Use `!husky help [command]` for specific command help')
       .addFields(
         { name: ':information_source: Info', value: '`help` `TBD` `TBD` `TBD` `TBD`', inline: true },
-        { name: ':partying_face: Server', value: '`kick` `ban` `TBD` `TBD` `TBD`', inline: true },
+        { name: ':partying_face: Server', value: '`announce` `kick` `ban` `TBD` `TBD`', inline: true },
         { name: ':laughing: Fun', value: '`gif` `presidential` `trumptweet` `rps`', inline: true },
       );
       return message.channel.send(helpEmbed);
     }
-    // !husky command arg2 arg3...
+
     const command = args.shift().toLowerCase();
     if(client.commands.has(command)) {
       const cmd = client.commands.get(command);
