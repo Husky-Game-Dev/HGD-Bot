@@ -6,11 +6,11 @@ module.exports = {
   description: 'Make an announcment to or the same text channel',
   usage: '!husky report <UserTag> <Reason>',
   execute(message, args, client) {
-    message.channel.send('Under construction');
+    message.channel.send('Under construction, might be missing feature');
     const userTag = args.shift();
     const user = client.users.cache.find(u => u.tag === userTag);
     if(user) {
-      const channel = message.guild.channels.cache.find(chan => chan.name === 'report');
+      const channel = message.guild.channels.cache.find(chan => chan.name === 'reports');
       if(!channel) return message.reply('Can\'t find report channel!');
 
       const reportEmbed = new MessageEmbed()

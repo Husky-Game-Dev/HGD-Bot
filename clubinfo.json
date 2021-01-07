@@ -1,0 +1,14 @@
+{
+  "club1": {
+		"name": "Husky Game Dev Club",
+    "school": "University of Washington Bothell",
+    "description": "Husky Game Dev is a student organization aimed at supporting indie game development at the Bothell campus of the University of Washington. Our goal is to provide a community, educational opportunities, and resources for UWB students to learn skills related to game development and connect with industry professionals.",
+    "jams": "Every quarter, Husky Game Dev holds a game jam that gives students an incentive to get coding and developing games for fun! This is a perfect opportunity for you to form teams, brainstorm ideas, and make your game ideas come to life!",
+    "events": "Learn more about game development with Husky Game Dev through our workshops! We will walk you through skills that will teach you how to be a game developer and designer.",
+    "website": "https://huskygamedev.com",
+    "linkedin": "https://www.linkedin.com/company/huskygamedev/",
+    "twitter": "https://twitter.com/husky_dev?lang=en",
+    "instagram": "https://www.instagram.com/husky_dev/",
+    "facebook": "https://www.facebook.com/UWB-Husky-Game-Dev-109586567392535/"
+	}
+}

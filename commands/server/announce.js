@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: 'announce',
   category: 'Server',
-  description: 'Make an announcment to or the same text channel',
+  description: 'Send a message to or the same text channel',
   usage: '**!husky announce <channelID> (SAFE)**, \n**!husky announce <channelID> <message>**, \n**!husky announce <message>**',
   async execute(message, args, client) {
     message.channel.send('Under construction');
