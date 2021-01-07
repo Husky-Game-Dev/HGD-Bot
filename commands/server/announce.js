@@ -23,8 +23,9 @@ module.exports = {
         \n:x: - To cancel`)
         .setThumbnail(client.user.avatarURL());
       await message.reply(embed).then(sent => sent.react('❌'));
+
       const filterReact = (react, user) => {
-        return react.emoji.name === '❌' && user.id === message.author.id;
+        return ['❌', '✅'].includes(react.emoji.name) && user.id === message.author.id;
       };
       // fetch the last message by the bot
       let cancel = false;
@@ -43,9 +44,21 @@ module.exports = {
       const collector = message.channel.createMessageCollector(filter, { max: 1, time: 60000 });
       collector.on('collect', m => {
         if(cancel) return;
-        message.reply(`Please confirm:\n${m.content}`).then(sent => {
+        message.reply(`Please confirm to channel \`#${channel.name}\`:\n \`\`\`${m.content}\`\`\``).then(sent => {
           sent.react('✅');
           sent.react('❌');
+          m.delete();
+          sent.awaitReactions(filterReact, { max: 1, time: 60000, error: ['time'] })
+            .then(collected => {
+              const reaction = collected.first();
+              if(reaction.emoji.name === '✅') {
+                channel.send(m.content);
+                return message.reply('Sent! ✅');;
+              }else if(reaction.emoji.name === '❌') {
+                sent.delete();
+                return message.reply('Operation canceled ❌');
+              }
+            });
         });
       });
     }
