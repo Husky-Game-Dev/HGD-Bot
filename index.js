@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Canvas = require('canvas');
 require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -28,6 +29,7 @@ fs.readdirSync('./commands/').forEach(dir => {
 });
 
 client.on('ready', () => {
+	Canvas.registerFont('./assets/fonts/GiantRobotArmy-Medium.ttf', { family: 'giant-robot' });
 	console.log(`Logged in as ${client.user.tag}!`);
   client.user.setPresence({
 				status: 'online',
@@ -37,6 +39,38 @@ client.on('ready', () => {
         }
 		})
 		.catch(console.error);
+});
+
+client.on('guildMemberAdd', async member => {
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
+	if (!channel) return;
+	// Set a new canvas to the dimensions of 450x450 pixels
+	const canvas = Canvas.createCanvas(850, 450);
+	// ctx (context) will be used to modify a lot of the canvas
+	const ctx = canvas.getContext('2d');
+
+	const background = await Canvas.loadImage('./assets/welcomeLogo.png');
+	// This uses the canvas dimensions to stretch the image onto the entire canvas
+	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+	ctx.strokeStyle = '#74037b';
+	ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+	ctx.font = applyText(canvas, member.displayName);
+	ctx.fillStyle = '#ffffff';
+	ctx.fillText('Welcome ' + member.displayName + '!', canvas.width / 20, canvas.height / 1.8);
+
+	ctx.beginPath();
+	ctx.arc(105, 105, 80, 0, Math.PI * 2, true);
+	ctx.closePath();
+	ctx.clip();
+
+	const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
+	// Move the image downwards vertically and constrain its height to 200, so it's a square
+	ctx.drawImage(avatar, 25, 25, 160, 160);
+
+	const attachment = new Discord.MessageAttachment(canvas.toBuffer());
+	channel.send(`Welcome to the server, ${member}!`, attachment);
 });
 
 client.on('message', message => {
@@ -60,6 +94,23 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+// Pass the entire Canvas object because you'll need to access its width, as well its context
+const applyText = (canvas, text) => {
+	const ctx = canvas.getContext('2d');
+
+	// Declare a base size of the font
+	let fontSize = 60;
+
+	do {
+		// Assign the font to the context and decrement it so it can be measured again
+		ctx.font = `${fontSize -= 10}px giant-robot`;
+		// Compare pixel width of the text to the canvas minus the approximate avatar size
+	} while (ctx.measureText(text).width > canvas.width - 300);
+
+	// Return the result to use in the actual canvas
+	return ctx.font;
+};
 
 const invalidEmbed = {
 	color: 0x0099ff,

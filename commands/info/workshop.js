@@ -5,6 +5,6 @@ module.exports = {
   category: 'Info',
   description: 'Information about upcoming/previous workshops',
   execute(message) {
-    message.channel.send('Under construction, might be missing feature');
+    message.channel.send('Under construction');
   },
 };

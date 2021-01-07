@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: 'help',
   category: 'Info',
-  description: 'Description about the bot\'s commands',
+  description: 'List out all of the bot\'s commands',
   execute(message, args, client) {
     if(!args.length) {
       const helpEmbed = new MessageEmbed()

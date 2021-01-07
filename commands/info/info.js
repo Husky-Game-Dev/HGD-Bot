@@ -6,7 +6,6 @@ module.exports = {
   category: 'Info',
   description: 'Information about the club',
   execute(message) {
-    message.channel.send('Under construction, might be missing feature');
     const infoEmbed = new MessageEmbed()
     .setAuthor('Husky Game Dev', 'https://i.imgur.com/xMskFdp.png', 'https://huskygamedev.com')
     .setTitle('About us')
