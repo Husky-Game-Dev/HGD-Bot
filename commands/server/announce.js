@@ -53,7 +53,7 @@ module.exports = {
               const reaction = collected.first();
               if(reaction.emoji.name === '✅') {
                 channel.send(m.content);
-                return message.reply('Sent! ✅');;
+                return message.reply('Sent! ✅');
               }else if(reaction.emoji.name === '❌') {
                 sent.delete();
                 return message.reply('Operation canceled ❌');
