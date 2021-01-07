@@ -58,8 +58,8 @@ client.on('guildMemberAdd', async member => {
 
 	ctx.font = applyText(canvas, member.displayName);
 	ctx.fillStyle = '#ffffff';
-	ctx.fillText('Welcome ' + member.displayName + '!', canvas.width / 20, canvas.height / 1.8);
-
+	ctx.fillText('Welcome ' + member.displayName, canvas.width / 20, canvas.height / 1.8);
+	ctx.fillText('to the server!', canvas.width / 20, canvas.height / 1.42);
 	ctx.beginPath();
 	ctx.arc(105, 105, 80, 0, Math.PI * 2, true);
 	ctx.closePath();
@@ -75,6 +75,9 @@ client.on('guildMemberAdd', async member => {
 
 client.on('message', message => {
 	console.log(message.content);
+	if (message.content === '!join') {
+		client.emit('guildMemberAdd', message.member);
+	}
 	if (message.author.bot) return;
 	if (message.content.indexOf(prefix) !== 0) return;
 	// !husky command arg2 arg3...
