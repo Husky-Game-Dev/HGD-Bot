@@ -11,7 +11,7 @@ module.exports = {
       .setTitle('Commands list')
       .setAuthor('Husky Game Dev', 'https://i.imgur.com/xMskFdp.png', 'https://huskygamedev.com')
       .setColor('RANDOM')
-      .setDescription('Use `!husky help [command]` for specific command help')
+      .setDescription('Use `!husky help [command]` for specific command help \n**Bot is still in early testing phase!**')
       .addFields(
         { name: ':information_source: Info', value: '`help` `info` `workshop` `event` `TBD`', inline: true },
         { name: '🔧 Server', value: '`announce` `kick` `ban` `report` `TBD` `TBD`', inline: true },

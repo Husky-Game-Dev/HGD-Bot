@@ -27,7 +27,8 @@ module.exports = {
       message.author.send(reportEmbed);
     }
     else{
-      message.reply(`Can't find user with tag: ${userTag}`);
+      message.delete();
+      message.author.send(`Can't find user with tag: ${userTag}`);
     }
   },
 };

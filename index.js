@@ -44,7 +44,7 @@ client.on('ready', () => {
 client.on('guildMemberAdd', async member => {
 	const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
 	if (!channel) return;
-	// Set a new canvas to the dimensions of 450x450 pixels
+	// Set a new canvas to the dimensions of 850x450 pixels
 	const canvas = Canvas.createCanvas(850, 450);
 	// ctx (context) will be used to modify a lot of the canvas
 	const ctx = canvas.getContext('2d');
