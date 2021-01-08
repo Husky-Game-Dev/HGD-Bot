@@ -13,9 +13,9 @@ module.exports = {
       .setColor('RANDOM')
       .setDescription('Use `!husky help [command]` for specific command help \n**Bot is still in early testing phase!**')
       .addFields(
-        { name: ':information_source: Info', value: '`help` `info` `workshop` `event` `TBD`', inline: true },
+        { name: ':information_source: Info', value: '`help` `info` `workshop` `event` `stock`', inline: true },
         { name: '🔧 Server', value: '`announce` `kick` `ban` `report` `TBD`', inline: true },
-        { name: '😆 Fun', value: '`gif` `presidential` `trumptweet` `rps` `TBD`', inline: true },
+        { name: '😆 Fun', value: '`gif` `trumptweet` `rps` `TBD`', inline: true },
       );
       return message.channel.send(helpEmbed);
     }
