@@ -6,7 +6,7 @@ module.exports = {
   description: 'Send a message to or the same text channel',
   usage: '**!husky announce <channelID> (SAFE)**, \n**!husky announce <channelID> <message>**, \n**!husky announce <message>**',
   async execute(message, args, client) {
-    message.channel.send('Under construction');
+    if(!message.member.roles.cache.some(role => role.name === 'Officer')) return;
     if(!args.length) {
       return message.reply('Please indicate a channelID and/or message you want to send');
     }
