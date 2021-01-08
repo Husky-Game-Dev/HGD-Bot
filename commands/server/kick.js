@@ -1,7 +1,8 @@
 module.exports = {
   name: 'kick',
   category: 'Server',
-  description: 'Kick',
+  description: 'Kick some one',
+  perms: 'Officer',
   execute(message) {
     if(!message.member.hasPermission('KICK_MEMBERS')) {
       return message.reply(':x: You do not have permissions to kick');

@@ -26,6 +26,7 @@ module.exports = {
                      \n\`Category:\` ${cmd.category}
                      \n\`Description:\` ${cmd.description}`;
       if(cmd.usage) about += `\n\`Usage:\` ${cmd.usage}`;
+      if(cmd.perms && !message.member.roles.cache.some(role => role.name === cmd.perms)) return;
       const commandEmbed = new MessageEmbed()
       .setColor('#0099ff')
       .setThumbnail(client.user.avatarURL());

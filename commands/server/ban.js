@@ -2,6 +2,7 @@ module.exports = {
   name: 'ban',
   category: 'Server',
   description: 'Give someone the ban hammer',
+  perms: 'Officer',
   execute(message) {
     if(!message.member.hasPermission('BAN_MEMBERS')) {
       return message.reply(':x: You do not have permissions to ban');

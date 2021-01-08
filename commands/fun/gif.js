@@ -4,6 +4,7 @@ module.exports = {
   name: 'gif',
   category: 'Fun',
   description: 'Get a GIF from Tenor',
+  usage: '!husky gif <keywords>',
   async execute(message, args) {
     message.channel.send('GIF!');
     // !husky gif dog cat mouse
