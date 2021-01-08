@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Canvas = require('canvas');
-require('dotenv').config();
+require('dotenv-flow').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
