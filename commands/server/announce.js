@@ -54,6 +54,7 @@ module.exports = {
             .then(collected => {
               const reaction = collected.first();
               if(reaction.emoji.name === '✅') {
+                sent.delete();
                 channel.send(m.content);
                 return message.reply('Sent! ✅');
               }else if(reaction.emoji.name === '❌') {
