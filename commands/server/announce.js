@@ -29,8 +29,9 @@ module.exports = {
       };
       // fetch the last message by the bot
       let cancel = false;
+      let lastMessage = null;
       message.channel.messages.fetch({ limit: 1 }).then(messages => {
-        const lastMessage = messages.first();
+        lastMessage = messages.first();
         const reactColl = lastMessage.createReactionCollector(filterReact, { time: 60000 });
         reactColl.on('collect', () => {
           lastMessage.delete();
@@ -44,6 +45,7 @@ module.exports = {
       collector.on('collect', m => {
         if(cancel) return;
         message.reply(`Please confirm to channel \`#${channel.name}\`:\n \`\`\`${m.content}\`\`\``).then(sent => {
+          if(lastMessage) lastMessage.delete();
           sent.react('✅');
           sent.react('❌');
           m.delete();

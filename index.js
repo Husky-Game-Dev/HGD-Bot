@@ -28,8 +28,8 @@ fs.readdirSync('./commands/').forEach(dir => {
 	}
 });
 
-client.on('ready', () => {
-	Canvas.registerFont('./assets/fonts/GiantRobotArmy-Medium.ttf', { family: 'giant-robot' });
+client.on('ready', async () => {
+	await Canvas.registerFont('./assets/fonts/GiantRobotArmy-Medium.ttf', { family: 'giant-robot' });
 	console.log(`Logged in as ${client.user.tag}!`);
   client.user.setPresence({
 				status: 'online',
