@@ -14,6 +14,7 @@ module.exports = {
     const symbol = args.shift();
     const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${process.env.ALPHAKEY}`);
     const json = await response.json();
+    if(json['Error Message']) return message.reply(`Symbol \`${symbol}\` not found!`);
     for(const key in json['Time Series (5min)']) {
       time = key;
       open = json['Time Series (5min)'][key]['1. open'];
