@@ -8,7 +8,7 @@ module.exports = {
   description: 'Look up some stock',
   usage: '!husky stock <stock symbol>',
   async execute(message, args) {
-    message.channel.send('Under construction');
+    message.channel.send('Getting stock info');
     if(!args.length || args.length > 1) return message.reply('try ``!husky stock <stock symbol>``');
     let time = null, open = null, high = null, low = null, close = null, volume = null;
     const symbol = args.shift();
