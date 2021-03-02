@@ -16,8 +16,15 @@ module.exports = {
     // <topic> | option 1 | option 2 | ...
     let options = message.content.slice(slice).trim().split('|');
     if(options.length >= 12) return message.reply('Limit to 10 or less options pls I don\'t have enough emoji 😭');
-    const topic = options.shift().trim();
-    message.delete();
+    const reg = new RegExp('^[t,T]:[0-9]+', '');
+    let topic = options.shift().trim();
+    let time = topic.match(reg);
+    if(time != null && time.length > 0) {
+      topic = topic.replace(reg, '').trim();
+      time = parseInt(time[0].slice(2));
+    } else {time = 60;}
+
+    // message.delete();
     // If no option is defined, default to yes and no
     if(options.length <= 0) {
       options = ['Yes', 'No'];
@@ -25,7 +32,7 @@ module.exports = {
 
     const emojiList = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'];
     const filter = (react, user) =>{
-        return emojiList.includes(react.emoji.name) && user.id != client.user.id;
+        return user.id != client.user.id && emojiList.includes(react.emoji.name);
     };
     let description = '';
     const votes = new Array(options.length);
@@ -38,14 +45,14 @@ module.exports = {
     const embed = new MessageEmbed()
     .setThumbnail(client.user.avatarURL())
     .setTitle(topic)
-    .setFooter(`Vote started by ${message.author.tag} for 60 mins`, message.author.displayAvatarURL());
+    .setFooter(`Vote started by ${message.author.tag} for ${time} mins`, message.author.displayAvatarURL());
     message.channel.send(embed.setDescription(description)).then(sent => {
       for(let i = 0; i < options.length; i++) {
         sent.react(emojiList[i]);
       }
       // start collecting reaction for votes
       // 1 hour
-      const t = 60 * 60000;
+      const t = time * 60000;
       const collector = sent.createReactionCollector(filter, { time: t });
 
       collector.on('collect', (react, user) => {
