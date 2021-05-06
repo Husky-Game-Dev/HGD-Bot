@@ -73,6 +73,7 @@ client.on('guildMemberAdd', async member => {
 	channel.send(`Welcome to the server, ${member}!`, attachment);
 });
 
+// collecting
 client.on('message', message => {
 	console.log(message.content);
 	if (message.content === '!join') {
