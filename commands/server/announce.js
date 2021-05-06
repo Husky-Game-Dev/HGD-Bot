@@ -5,7 +5,7 @@ module.exports = {
   category: 'Server',
   description: 'Send a message to or the same text channel',
   usage: '**!husky announce <channelID> (SAFE)**, \n**!husky announce <channelID> <message>**, \n**!husky announce <message>**',
-  perms: 'Officer',
+  perms: ['Officer', 'Core Officers', 'Executive Officers'],
   async execute(message, args, client) {
     if(!message.member.roles.cache.some(role => role.name === this.perms)) return;
     if(!args.length) {

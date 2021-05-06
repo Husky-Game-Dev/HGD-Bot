@@ -12,8 +12,8 @@ const Data = require('../../models/data.js');
 module.exports = {
   name: 'point',
   category: 'Trainning',
-  description: 'Get your point',
-  perms: 'Officer',
+  description: 'View how many point you or someone have',
+  perms: ['Officer', 'Core Officers', 'Executive Officers'],
   usage: '!husky point \n !husky point @user',
   execute(message, args, client) {
 
@@ -36,9 +36,12 @@ module.exports = {
           point: 0,
         });
         newData.save().catch(err => console.log(err));
-        return message.channel.send(`\`${user.username}\` has \`0\` point`);
+        return message.channel.send(`\`${user.username}\` has \`0 out of 1500\` points`);
       } else{
-        return message.channel.send(`\`${user.username}\` has \`${data.point}\` point`);
+        if(data.point < 1500) {
+          return message.channel.send(`\`${user.username}\` has \`${data.point} out of 1500\` points`);
+        }
+        return message.channel.send(`\`${user.username}\` has \`${data.point}\` points and ready for promotion`);
       }
 
     });

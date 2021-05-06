@@ -4,7 +4,7 @@ module.exports = {
   name: 'vote',
   category: 'Server',
   description: 'Start a new vote',
-  perms: 'Officer',
+  perms: ['Officer', 'Core Officers', 'Executive Officers'],
   usage: '!husky vote <topic> | option 1 | option 2 | ...',
   execute(message, args, client) {
     message.channel.send('Starting a vote');

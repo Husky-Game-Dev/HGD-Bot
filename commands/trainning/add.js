@@ -12,8 +12,8 @@ const Data = require('../../models/data.js');
 module.exports = {
   name: 'add',
   category: 'Trainning',
-  description: 'add point',
-  perms: 'Officer',
+  description: 'Add point',
+  perms: ['Officer', 'Core Officers', 'Executive Officers'],
   usage: '!husky add #point @user \n !husky add #point',
   execute(message, args, client) {
 

@@ -2,7 +2,7 @@ module.exports = {
   name: 'kick',
   category: 'Server',
   description: 'Kick some one',
-  perms: 'Officer',
+  perms: ['Officer', 'Core Officers', 'Executive Officers'],
   usage: '!husky ban <UserTag>',
   execute(message, args, client) {
     if(!message.member.hasPermission('KICK_MEMBERS')) {
