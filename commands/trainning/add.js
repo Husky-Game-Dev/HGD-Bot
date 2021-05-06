@@ -14,7 +14,7 @@ module.exports = {
   category: 'Trainning',
   description: 'add point',
   perms: 'Officer',
-  usage: '!husky add #point @user',
+  usage: '!husky add #point @user \n !husky add #point',
   execute(message, args, client) {
 
     let amount = args.shift();

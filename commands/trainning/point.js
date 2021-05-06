@@ -14,7 +14,7 @@ module.exports = {
   category: 'Trainning',
   description: 'Get your point',
   perms: 'Officer',
-  usage: '!husky point',
+  usage: '!husky point \n !husky point @user',
   execute(message, args, client) {
 
     let user = message.author;
