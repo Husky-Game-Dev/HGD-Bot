@@ -16,6 +16,9 @@ module.exports = {
   perms: ['Officer', 'Core Officers', 'Executive Officers'],
   usage: '!husky add #point @user \n !husky add #point',
   execute(message, args, client) {
+    if(!message.member.roles.cache.some(role => this.perms.includes(role.name))) {
+      return message.author.send('You don\'t have permission to add point');
+    }
 
     let amount = args.shift();
     // check if add amount is a valid number
