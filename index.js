@@ -42,7 +42,10 @@ client.on('ready', async () => {
 });
 
 client.on('guildMemberAdd', async member => {
-	const channel = member.guild.channels.cache.find(ch => ch.name === 'general');
+	const channel = member.guild.channels.cache.find(ch => ch.name === 'welcome');
+	const crules = member.guild.channels.cache.find(ch => ch.name === 'rules-and-info');
+	const crole = member.guild.channels.cache.find(ch => ch.name === 'role-assignment');
+	const cintro = member.guild.channels.cache.find(ch => ch.name === 'introduce-yourself');
 	if (!channel) return;
 	// Set a new canvas to the dimensions of 850x450 pixels
 	const canvas = Canvas.createCanvas(850, 450);
@@ -50,7 +53,7 @@ client.on('guildMemberAdd', async member => {
 	const ctx = canvas.getContext('2d');
 
 	const background = await Canvas.loadImage('./assets/welcomeLogo.png');
-	// This uses the canvas dimensions to stretch the image onto the entire canvas
+	// This uses the canvas dimensions to stretch the image onto the entire canvas.
 	ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 	ctx.strokeStyle = '#74037b';
@@ -66,11 +69,16 @@ client.on('guildMemberAdd', async member => {
 	ctx.clip();
 
 	const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
-	// Move the image downwards vertically and constrain its height to 200, so it's a square
+	// Move the image downwards vertically and constrain its height to 160, so it's a square
 	ctx.drawImage(avatar, 25, 25, 160, 160);
 
+	let s = `Welcome ${member} to Husky Game Dev server!\n`;
+	s += 'Here\'s 3 things we\'d like you to do real quick:\n';
+	s += `1. Review the <#${crules.id}> channel\n`;
+	s += `2. Check out <#${crole.id}> and assign yourself a role of your choice\n`;
+  s += `3. Post an introduction in <#${cintro.id}>\nThank you!!`;
 	const attachment = new Discord.MessageAttachment(canvas.toBuffer());
-	channel.send(`Welcome to the server, ${member}!`, attachment);
+	channel.send(s, attachment);
 });
 
 // collecting

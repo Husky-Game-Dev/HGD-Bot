@@ -46,11 +46,11 @@ module.exports = {
           point: amount,
         });
         newData.save().catch(err => console.log(err));
-        return message.channel.send(`Added \`${amount}\` point to \`${user.username}\``);
+        return message.channel.send(`Added \`${amount}\` points to \`${user.username}\``);
       } else{
         data.point += amount;
         data.save().catch(err => console.log(err));
-        return message.channel.send(`Added \`${amount}\` point to \`${user.username}\``);
+        return message.channel.send(`Added \`${amount}\` points to \`${user.username}\``);
       }
 
     });
