@@ -42,10 +42,11 @@ client.on('ready', async () => {
 });
 
 client.on('guildMemberAdd', async member => {
-	const channel = member.guild.channels.cache.find(ch => ch.name === 'welcome');
-	const crules = member.guild.channels.cache.find(ch => ch.name === 'rules-and-info');
-	const crole = member.guild.channels.cache.find(ch => ch.name === 'role-assignment');
-	const cintro = member.guild.channels.cache.find(ch => ch.name === 'introduce-yourself');
+	// welcome
+	const channel = member.guild.channels.cache.get(900860510990401616);
+	const crules = member.guild.channels.cache.get(638555015832797194);
+	const crole = member.guild.channels.cache.get(818275137517912097);
+	const cintro = member.guild.channels.cache.get(644738320202727425);
 	if (!channel) return;
 	// Set a new canvas to the dimensions of 850x450 pixels
 	const canvas = Canvas.createCanvas(850, 450);
